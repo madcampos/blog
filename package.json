@@ -1,0 +1,49 @@
+{
+	"name": "madcampos-blog",
+	"version": "1.0.0",
+	"private": true,
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"volta": {
+		"node": "18.16.0"
+	},
+	"scripts": {
+		"postinstall": "husky install",
+		"start": "eleventy --serve",
+		"typecheck": "tsc --noEmit",
+		"lint:js": "eslint . --ext .js,.cjs,.mjs,.ts,.cts,.mts --fix --ignore-path .gitignore",
+		"lint:css": "stylelint **/*.css --fix",
+		"lint": "npm run typecheck && npm run lint:js && npm run lint:css",
+		"lint-staged": "lint-staged",
+		"build": "eleventy"
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"@11ty/eleventy": "^2.0.1",
+		"@commitlint/cli": "^17.6.6",
+		"@commitlint/config-conventional": "^17.6.6",
+		"@types/node": "^18.17.0",
+		"@typescript-eslint/eslint-plugin": "^6.1.0",
+		"@typescript-eslint/parser": "^6.1.0",
+		"eslint": "^8.45.0",
+		"husky": "^8.0.3",
+		"lint-staged": "^13.2.3",
+		"stylelint": "^15.10.1",
+		"typescript": "^5.1.6"
+	},
+	"lint-staged": {
+		"*.ts": "eslint --ext .ts --fix",
+		"*.cts": "eslint --ext .cts --fix",
+		"*.mts": "eslint --ext .mts --fix",
+		"*.js": "eslint --ext .js --fix",
+		"*.cjs": "eslint --ext .cjs --fix",
+		"*.mjs": "eslint --ext .mjs --fix",
+		"*.css": "stylelint --fix"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	}
+}
