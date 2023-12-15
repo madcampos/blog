@@ -1,8 +1,8 @@
 ---
 title: "Hello, World!"
-date: "2023-05-05"
-updated: "2023-06-05"
-description: "Summary of the experience and hurdles of coding this blog."
+createdAt: "2023-05-05"
+updatedAt: "2023-06-05"
+summary: "Summary of the experience and hurdles of coding this blog."
 tags:
   - "BuildInTheOpen"
   - "BuildingInPublic"

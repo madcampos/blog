@@ -1,0 +1,21 @@
+---
+import type { InferGetStaticPropsType, GetStaticPaths, PaginateFunction } from 'astro';
+
+import { listAllPosts, type Post } from '../utils/post.ts';
+import { MAX_POSTS_PER_PAGE } from '../globals.ts';
+import HomeLayout from '../layouts/Home.astro';
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+export const getStaticPaths = (async ({ paginate }: { paginate: PaginateFunction }) => {
+	const posts = await listAllPosts();
+
+	return paginate(posts, {
+		pageSize: MAX_POSTS_PER_PAGE
+	});
+}) satisfies GetStaticPaths;
+
+const { data: posts, url, currentPage, lastPage } = Astro.props.page;
+---
+
+<HomeLayout posts={posts as Post[]} currentUrl={Astro.site?.toString() ?? ''} currentPage={currentPage} lastPage={lastPage} prevUrl={url.prev} nextUrl={url.next}></HomeLayout>

@@ -1,8 +1,8 @@
 ---
 title: "Web Components: A (Not So) Gentle Introduction"
-date: "2023-06-26"
-updated: "2023-07-20"
-description: "A brief introduction to web components."
+createdAt: "2023-06-26"
+updatedAt: "2023-07-20"
+summary: "A brief introduction to web components."
 updates:
   - "2023-07-20 - Added cross-link to tabs post."
 tags:

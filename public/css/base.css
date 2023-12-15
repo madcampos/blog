@@ -1,0 +1,87 @@
+@import './vars.css';
+@import './fonts.css';
+
+:not(:defined) { display: none; }
+
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	box-sizing: border-box;
+
+	font-family: var(--monospace-font-family);
+	font-size: var(--body-text);
+	font-weight: normal;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: stretch;
+	align-items: stretch;
+
+	background: var(--dark-bg-color);
+	color: var(--text-color);
+
+	scrollbar-width: thin;
+	scrollbar-color: var(--theme-color) var(--scrollbar-bg);
+}
+
+body *, body *::after, body *::before {
+	box-sizing: inherit;
+	font-family: inherit;
+}
+
+::selection {
+	background-color: var(--theme-color);
+	color: var(--bg-color);
+}
+
+::target-text {
+	background-color: var(--accent-color);
+	color: var(--bg-color);
+}
+
+a { color: var(--theme-color); }
+a:visited { color: var(--secondary-color); }
+a:hover { color: var(--accent-color); }
+a:active { color: var(--complementary-color); }
+
+a:focus {
+	outline: none;
+	background-color: var(--theme-color);
+	color: var(--bg-color);
+	border-radius: var(--border-radius);
+}
+
+a:has(img) {
+	display: inline-flex;
+}
+
+a:focus:has(img) {
+	background-color: var(--secondary-color);
+}
+
+h1 {
+	text-align: center;
+	color: var(--theme-color);
+	margin-block: 1rem;
+	margin-inline: auto;
+}
+
+h1 img {
+	height: 100%;
+	object-fit: contain;
+	width: clamp(10rem, 70vmin, 30rem);
+}
+
+nav ul {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	list-style: none;
+	padding: 0;
+	margin-block: 2rem;
+	margin-inline: auto;
+	width: clamp(10rem, 50vw, 20rem);
+}

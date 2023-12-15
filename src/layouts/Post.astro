@@ -1,0 +1,78 @@
+---
+interface Props {
+	title: string,
+	summary: string,
+	image?: string,
+	imageAlt?: string,
+	createdAt: Date,
+	updatedAt?: Date,
+	updates?: string[]
+	url: string
+}
+
+const { title, summary, image, imageAlt, createdAt, updatedAt, updates, url } = Astro.props;
+const formatter = new Intl.DateTimeFormat('en-US', { dateStyle: 'long' });
+const postUrl = new URL(url, Astro.site);
+
+---
+<!DOCTYPE html>
+<html lang="en-US" itemscope itemtype="https://schema.org/BlogPosting">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link rel="canonical" href={postUrl} />
+		<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Marco Campos' Blog" />
+
+		<title>{title} | Marco Campos | Blog</title>
+
+		<!-- App Metadata -->
+		<link rel="icon" href={`${Astro.site}icons/favicon.svg`} />
+
+		<!-- Social metadata -->
+		<meta name="keywords" itemprop="keywords" content="personal, senior web developer, web developer, vue.js, vue, node.js, javascript, typescript, webdev" />
+
+		<meta property="og:title" name="twitter:title" itemprop="name" content={title} />
+		<meta property="og:description" name="description" itemprop="abstract" content={summary} />
+		<meta property="og:image" name="twitter:image" itemprop="image" content={`${Astro.site}images/logo-blog.png`} />
+		<meta property="og:type" content="article" />
+		<meta property="og:locale" itemprop="inLanguage" content="en_US" />
+		<meta property="og:url" itemprop="url" content={postUrl} />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:dnt" content="on">
+
+		<meta name="pinterest" content="nopin">
+
+		<!-- Styles -->
+		<link rel="stylesheet" href={`${Astro.site}css/base.css`} />
+		<link rel="stylesheet" href={`${Astro.site}css/blog.css`} />
+		<link rel="stylesheet" href={`${Astro.site}css/code.css`} />
+	</head>
+
+	<body>
+		<article>
+			<div id="post-header">
+				<nav id="back-to-blog">
+					<a id="link-small" href={Astro.site} title="Back to blog">
+						<img src={`${Astro.site}images/logo-blog-mini.svg`} alt="Blog logo consisting of stylized &quot;{m}&quot; with a subtext of &quot;--blog&quot;" role="presentation" />
+					</a>
+					<a id="link-big" href={Astro.site} title="Back to blog">
+						<img src={`${Astro.site}images/logo-blog-micro.svg`} alt="Blog logo consisting of stylized &quot;{m}&quot; with a subtext of &quot;--blog&quot;" role="presentation" />
+					</a>
+				</nav>
+				<header>
+					{ image && <img id="hero-image" src={image} alt={imageAlt} itemprop="image" /> }
+
+					<h1>{title}</h1>
+					<aside>Published on <time itemprop="dateCreated" datetime={createdAt.toISOString()}>{formatter.format(createdAt)}</time></aside>
+					{ updatedAt && <aside>Updated on <time itemprop="dateModified" datetime={updatedAt.toISOString()}>{formatter.format(updatedAt)}</time></aside> }
+				</header>
+			</div>
+
+			<main id="post-contents" itemprop="articleBody">
+				{ updates && <details><summary>Update History</summary><ul>{updates.map((update) => <li><p>{update}</p></li>)}
+</ul></details> }
+				<slot></slot>
+			</main>
+		</article>
+	</body>
+</html>

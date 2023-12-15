@@ -1,0 +1,75 @@
+---
+import type { Post } from '../utils/post';
+
+import Pagination from '../components/Pagination.astro';
+import PostCard from '../components/PostCard.astro';
+
+interface Props {
+	posts: Post[],
+	title?: string
+	currentUrl: string,
+	currentPage: number,
+	lastPage: number,
+	prevUrl?: string,
+	nextUrl?: string
+}
+
+const { posts, title = '', currentUrl, currentPage, lastPage, prevUrl, nextUrl } = Astro.props;
+
+// const url = new URL(title, Astro.site);
+const url = '';
+---
+<html lang="en-US" itemscope itemtype="https://schema.org/WebPage">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link rel="canonical" href={url} />
+		<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Marco Campos' Blog" />
+
+		<title>Marco Campos | Blog | {title}</title>
+
+		<!-- App Metadata -->
+		<link rel="icon" href={`${Astro.site}icons/favicon.svg`} />
+
+		<!-- Social metadata -->
+		<meta name="keywords" itemprop="keywords" content="blog, senior web developer, web developer, vue.js, vue, node.js, javascript, typescript, webdev" />
+
+		<meta property="og:title" name="twitter:title" itemprop="name" content="Marco Campos | Blog" />
+		<meta property="og:description" name="description" itemprop="abstract" content="Marco Campos' Blog - A space where I talk about web development, Vue.js, Node.js, TypeScript, JavaScript" />
+		<meta property="og:image" name="twitter:image" itemprop="image" content={`${Astro.site}images/logo-blog.png`} />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" itemprop="inLanguage" content="en_US" />
+		<meta property="og:url" itemprop="url" content={url} />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:dnt" content="on">
+
+		<meta name="pinterest" content="nopin">
+
+		<!-- Styles -->
+		<link rel="stylesheet" href={`${Astro.site}css/base.css`} />
+		<link rel="stylesheet" href={`${Astro.site}css/blog.css`} />
+	</head>
+
+	<body>
+		<header class="blog-page-header">
+			<nav id="back-to-blog">
+				<a id="link-small" href={Astro.site} title="Back to blog">
+					<img src={`${Astro.site}images/logo-blog-mini.svg`} alt="Blog logo consisting of stylized &quot;{m}&quot; with a subtext of &quot;--blog&quot;" role="presentation" />
+				</a>
+				<a id="link-big" href={Astro.site} title="Back to blog">
+					<img src={`${Astro.site}images/logo-blog-micro.svg`} alt="Blog logo consisting of stylized &quot;{m}&quot; with a subtext of &quot;--blog&quot;" role="presentation" />
+				</a>
+			</nav>
+			<h1>{title}</h1>
+		</header>
+		<main id="blog-posts">
+			{ posts.map((post) => <PostCard url={post.url} createdAt={post.data.createdAt.toISOString()}>
+				<span slot="title">{post.data.title}</span>
+				{post.data.summary}
+			</PostCard>)}
+		</main>
+		<footer>
+			<Pagination baseUrl={currentUrl} currentPage={currentPage} lastPage={lastPage} prevUrl={prevUrl} nextUrl={nextUrl} />
+		</footer>
+	</body>
+</html>

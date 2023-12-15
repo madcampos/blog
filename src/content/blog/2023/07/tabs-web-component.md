@@ -1,7 +1,7 @@
 ---
 title: "Tabs, Tabs, Tabs"
-date: "2023-07-20"
-description: "A how to guide on building an accessible tab component using Web Components."
+createdAt: "2023-07-20"
+summary: "A how to guide on building an accessible tab component using Web Components."
 tags:
   - "web-components"
   - "JavaScript"

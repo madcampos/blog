@@ -1,0 +1,24 @@
+@font-face {
+	font-family: 'Cascadia Code';
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url('./fonts/CascadiaCodePL.woff2') format('woff2');
+	font-variant-alternates: styleset('ss01') styleset('ss02') styleset('ss03') styleset('ss19') styleset('ss20');
+	font-variant-ligatures: common-ligatures contextual;
+}
+
+@font-face {
+	font-family: 'Cascadia Code';
+	font-style: italic;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url('./fonts/CascadiaCodePLItalic.woff2') format('woff2');
+	font-variant-alternates: styleset('ss01') styleset('ss02') styleset('ss03') styleset('ss19') styleset('ss20');
+	font-variant-ligatures: common-ligatures contextual;
+}
+
+:root {
+	--monospace-font-family: 'Cascadia Code', 'Fira Code', 'Roboto Mono', 'Monaco', 'Courier New', 'Courier', monospace;
+	--sans-serif-font-family: system-ui, -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', sans-serif;
+}

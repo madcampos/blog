@@ -1,8 +1,8 @@
 ---
 title: "The Semantics of Blogging"
-date: "2023-06-05"
-updated: "2023-06-07"
-description: "A dive into the semantic html of a blog."
+createdAt: "2023-06-05"
+updatedAt: "2023-06-07"
+summary: "A dive into the semantic html of a blog."
 tags:
   - "BuildInTheOpen"
   - "meta"

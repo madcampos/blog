@@ -1,8 +1,6 @@
 {
-	"include": ["**/*"],
-	"exclude": ["node_modules/**/*", "dist/**/*", ".vitepress/**/*"],
+	"exclude": ["node_modules/**/*", "dist/**/*"],
 	"compilerOptions": {
-		"tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
 		"allowJs": true,
 		"checkJs": true,
 		"lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -19,6 +17,7 @@
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedIndexedAccess": true,
 		"noPropertyAccessFromIndexSignature": true,
+		"allowImportingTsExtensions": true,
 		"allowSyntheticDefaultImports": true,
 		"allowUnreachableCode": false,
 		"noImplicitThis": true,
@@ -35,6 +34,6 @@
 		"newLine": "LF",
 		"composite": true,
 		"incremental": true,
-		"baseUrl": ".",
+		"baseUrl": "."
 	}
 }
