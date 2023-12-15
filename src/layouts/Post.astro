@@ -1,8 +1,11 @@
 ---
+import type { ImageProps } from '../content/config.ts';
+import { Image } from 'astro:assets';
+
 interface Props {
 	title: string,
 	summary: string,
-	image?: string,
+	image?: ImageProps,
 	imageAlt?: string,
 	createdAt: Date,
 	updatedAt?: Date,
@@ -60,7 +63,7 @@ const postUrl = new URL(url, Astro.site);
 					</a>
 				</nav>
 				<header>
-					{ image && <img id="hero-image" src={image} alt={imageAlt} itemprop="image" /> }
+					{ image && <Image id="hero-image" src={image} alt={imageAlt ?? ''} itemprop="image" /> }
 
 					<h1>{title}</h1>
 					<aside>Published on <time itemprop="dateCreated" datetime={createdAt.toISOString()}>{formatter.format(createdAt)}</time></aside>
