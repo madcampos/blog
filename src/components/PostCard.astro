@@ -1,11 +1,11 @@
 ---
 interface Props {
 	url: string,
-	createdAt: string
+	createdAt: string | Date
 }
 
 const { url, createdAt } = Astro.props;
-const postUrl = new URL(url, Astro.site);
+const postUrl = new URL(url.replace(/^\//iu, ''), Astro.site).toString();
 const formatter = new Intl.DateTimeFormat('en-US', { dateStyle: 'long' });
 ---
 <article class="post-card">

@@ -21,7 +21,7 @@ interface Props {
 
 const { posts, currentUrl, currentPage, lastPage, prevUrl, nextUrl } = Astro.props;
 const logoDescription = 'My moniker, "madcampos", written between curly braces on a monospaced font. With the word "blog" written to it\'s lower right side.';
-const siteUrl = currentUrl ?? Astro.site?.toString() ?? '';
+const siteUrl = new URL(currentUrl.replace(/^\//iu, ''), Astro.site).toString();
 ---
 <!DOCTYPE html>
 <html lang="en-US" itemscope itemtype="https://schema.org/WebPage">

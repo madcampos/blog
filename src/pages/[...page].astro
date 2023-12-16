@@ -18,4 +18,4 @@ export const getStaticPaths = (async ({ paginate }: { paginate: PaginateFunction
 const { data: posts, url, currentPage, lastPage } = Astro.props.page;
 ---
 
-<HomeLayout posts={posts as Post[]} currentUrl={Astro.site?.toString() ?? ''} currentPage={currentPage} lastPage={lastPage} prevUrl={url.prev} nextUrl={url.next}></HomeLayout>
+<HomeLayout posts={posts as Post[]} currentUrl={url.current} currentPage={currentPage} lastPage={lastPage} prevUrl={url.prev} nextUrl={url.next}></HomeLayout>

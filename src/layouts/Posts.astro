@@ -21,7 +21,7 @@ interface Props {
 
 const { posts, title = '', currentUrl, currentPage, lastPage, prevUrl, nextUrl } = Astro.props;
 
-const url = new URL(Astro.url.pathname.replace(/^\//iu, ''), Astro.site).toString();
+const url = new URL(currentUrl.replace(/^\//iu, ''), Astro.site).toString();
 ---
 <html lang="en-US" itemscope itemtype="https://schema.org/WebPage">
 	<HtmlHead
