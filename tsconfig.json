@@ -1,6 +1,7 @@
 {
 	"exclude": ["node_modules/**/*", "dist/**/*"],
 	"compilerOptions": {
+		"tsBuildInfoFile": "dist/.tsbuildinfo",
 		"allowJs": true,
 		"checkJs": true,
 		"lib": ["DOM", "DOM.Iterable", "ESNext"],

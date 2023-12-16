@@ -5,7 +5,7 @@ export default defineConfig({
 	base: '/blog',
 	trailingSlash: 'ignore',
 	devToolbar: { enabled: false },
-	compressHTML: false,
+	compressHTML: true,
 	build: {
 		format: 'directory'
 	},
