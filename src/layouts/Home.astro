@@ -1,8 +1,14 @@
 ---
 import type { Post } from '../utils/post';
 
+import '../assets/css/base.css';
+import '../assets/css/blog.css';
+
 import Pagination from '../components/Pagination.astro';
 import PostCard from '../components/PostCard.astro';
+import HtmlHead from '../components/HtmlHead.astro';
+
+import logoBlog from '../assets/images/logo-blog.svg';
 
 interface Props {
 	posts: Post[],
@@ -14,44 +20,21 @@ interface Props {
 }
 
 const { posts, currentUrl, currentPage, lastPage, prevUrl, nextUrl } = Astro.props;
+const logoDescription = 'My moniker, "madcampos", written between curly braces on a monospaced font. With the word "blog" written to it\'s lower right side.';
+const siteUrl = currentUrl ?? Astro.site?.toString() ?? '';
 ---
 <!DOCTYPE html>
 <html lang="en-US" itemscope itemtype="https://schema.org/WebPage">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<link rel="canonical" href={Astro.site} />
-		<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Marco Campos' Blog" />
-
-		<title>Marco Campos | Blog</title>
-
-		<!-- App Metadata -->
-		<link rel="icon" href={`${Astro.site}icons/favicon.svg`} />
-
-		<!-- Social metadata -->
-		<meta name="keywords" itemprop="keywords" content="blog, senior web developer, web developer, vue.js, vue, node.js, javascript, typescript, webdev" />
-
-		<meta property="og:title" name="twitter:title" itemprop="name" content="Marco Campos | Blog" />
-		<meta property="og:description" name="description" itemprop="abstract" content="Marco Campos' Blog - A space where I talk about web development, Vue.js, Node.js, TypeScript, JavaScript" />
-		<meta property="og:image" name="twitter:image" itemprop="image" content={`${Astro.site}images/logo-blog.png`} />
-		<meta property="og:type" content="website" />
-		<meta property="og:locale" itemprop="inLanguage" content="en_US" />
-		<meta property="og:url" itemprop="url" content={Astro.site} />
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:dnt" content="on">
-
-		<meta name="pinterest" content="nopin">
-
-		<!-- Styles -->
-		<link rel="stylesheet" href={`${Astro.site}css/base.css`} />
-		<link rel="stylesheet" href={`${Astro.site}css/blog.css`} />
-	</head>
+	<HtmlHead
+		title="Marco Campos | Blog"
+		description="Marco Campos' Blog - A space where I talk about web development, Vue.js, Node.js, TypeScript, JavaScript"
+		tags={['blog', 'senior web developer', 'web developer', 'vue.js', 'vue', 'node.js', 'javascript', 'typescript', 'webdev']}
+		url={siteUrl}
+	/>
 
 	<body>
 		<header class="blog-page-header">
-			<h1>
-				<a href={Astro.site}><img src={`${Astro.site}images/logo-blog.svg`} alt="My moniker, &quot;madcampos&quot;, written between curly braces on a monospaced font. With the word &quot;blog&quot; written to it's lower right side." /></a>
-			</h1>
+			<h1><a href={siteUrl}><img src={logoBlog.src} alt={logoDescription} /></a></h1>
 		</header>
 		<main id="blog-posts">
 			{ posts.map((post) => <PostCard url={post.url} createdAt={post.data.createdAt.toISOString()}>
@@ -60,7 +43,7 @@ const { posts, currentUrl, currentPage, lastPage, prevUrl, nextUrl } = Astro.pro
 			</PostCard>)}
 		</main>
 		<footer>
-			<Pagination baseUrl={currentUrl} currentPage={currentPage} lastPage={lastPage} prevUrl={prevUrl} nextUrl={nextUrl} />
+			<Pagination baseUrl={siteUrl} currentPage={currentPage} lastPage={lastPage} prevUrl={prevUrl} nextUrl={nextUrl} />
 		</footer>
 	</body>
 </html>
