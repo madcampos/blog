@@ -21,18 +21,18 @@
 		"preview": "astro preview --site=http://localhost:3000/blog/"
 	},
 	"devDependencies": {
-		"@astrojs/check": "^0.3.2",
+		"@astrojs/check": "^0.3.3",
 		"@astrojs/rss": "^4.0.1",
-		"@commitlint/cli": "^17.6.6",
-		"@commitlint/config-conventional": "^17.6.6",
-		"@types/node": "^18.17.0",
+		"@commitlint/cli": "^18.4.3",
+		"@commitlint/config-conventional": "^18.4.3",
+		"@types/node": "^20.10.4",
 		"@typescript-eslint/eslint-plugin": "^6.1.0",
 		"@typescript-eslint/parser": "^6.1.0",
-		"astro": "^4.0.5",
-		"eslint": "^8.45.0",
+		"astro": "^4.0.6",
+		"eslint": "^8.56.0",
 		"husky": "^8.0.3",
-		"lint-staged": "^13.2.3",
-		"stylelint": "^15.10.1",
+		"lint-staged": "^15.2.0",
+		"stylelint": "^16.0.2",
 		"typescript": "^5.3.3"
 	},
 	"lint-staged": {
