@@ -18,6 +18,14 @@ export const GET: APIRoute = async (context) => {
     site: context.site ?? '',
     items: await Promise.all((await getCollection('blog')).map(async (post) => {
       const image = post.data.image && await getImage({ src: post.data.image, format: 'png' });
+      let imageSize = 0;
+
+      if (image) {
+          const imageResponse = await fetch(image.src);
+
+          imageSize = Number.parseInt(imageResponse.headers.get('Content-Length') ?? '0');
+      }
+
 
       return {
         title: post.data.title,
@@ -29,8 +37,7 @@ export const GET: APIRoute = async (context) => {
           enclosure: {
             url: new URL(image.src, context.site).toString(),
             type: 'image/png',
-            // TODO: fix file size missing
-            length: 1024
+            length: imageSize
           }
         })
       };
